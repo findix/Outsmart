@@ -86,10 +86,11 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		new CopyDic(this);
 
 		// 注册短信数据库接收监听器
-		//SmsReceiver smsReceiver = new SmsReceiver(new Handler(), this);
-		//this.getContentResolver().registerContentObserver(Uri.parse("content://sms"), true, smsReceiver);
-		//启动短信数据库监听器服务
-		startService(new Intent(this, SmsReceiverService.class));  
+		// SmsReceiver smsReceiver = new SmsReceiver(new Handler(), this);
+		// this.getContentResolver().registerContentObserver(Uri.parse("content://sms"),
+		// true, smsReceiver);
+		// 启动短信数据库监听器服务
+		startService(new Intent(this, SmsReceiverService.class));
 
 		// 初始化最新短信_id
 		final String SMS_URI_INBOX = "content://sms/inbox";
@@ -98,11 +99,12 @@ public class MainActivity extends SherlockPreferenceActivity implements
 				"body", "date", "type" };
 		final Cursor cur = getContentResolver().query(uri, projectionSMS, null,
 				null, "date desc");
-		cur.moveToFirst();
-		int id = cur.getInt(cur.getColumnIndex("_id"));
-		Persistence smsId = new Persistence("sms.db");
-		smsId.changeValue(id);
-
+		if (cur != null) {
+			cur.moveToFirst();
+			int id = cur.getInt(cur.getColumnIndex("_id"));
+			Persistence smsId = new Persistence("sms.db");
+			smsId.changeValue(id);
+		}
 		// 设置日历
 		new Persistence("CalendarSet.db");
 
@@ -165,19 +167,24 @@ public class MainActivity extends SherlockPreferenceActivity implements
 				"body", "date", "type" };
 		final Cursor cur = getContentResolver().query(uri, projectionSMS, null,
 				null, "date desc");
-		cur.moveToFirst();
-		Intent intent = new Intent();
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClass(MainActivity.this, DialogActivity.class);
-		// intent.setClass(this,
-		// ReplyActivity.class);
-		intent.putExtra("content", cur.getString(cur.getColumnIndex("body")));
-		intent.putExtra("address", cur.getString(cur.getColumnIndex("address")));
-		intent.putExtra("person", cur.getString(cur.getColumnIndex("person")));
-		intent.putExtra("date", cur.getLong(cur.getColumnIndex("date")));
-		// System.out.println(cur.getString(cur.getColumnIndex("address")));
-		if (actionSwitch.isChecked())
-			startActivity(intent);
+		if (cur != null) {
+			cur.moveToFirst();
+			Intent intent = new Intent();
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.setClass(MainActivity.this, DialogActivity.class);
+			// intent.setClass(this,
+			// ReplyActivity.class);
+			intent.putExtra("content",
+					cur.getString(cur.getColumnIndex("body")));
+			intent.putExtra("address",
+					cur.getString(cur.getColumnIndex("address")));
+			intent.putExtra("person",
+					cur.getString(cur.getColumnIndex("person")));
+			intent.putExtra("date", cur.getLong(cur.getColumnIndex("date")));
+			// System.out.println(cur.getString(cur.getColumnIndex("address")));
+			if (actionSwitch.isChecked())
+				startActivity(intent);
+		}
 	}
 
 	private void ShowSMSDo() {
@@ -249,7 +256,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		String[] projection = new String[] { "_id", "name" };
 		Cursor userCursor = getContentResolver().query(Uri.parse(calanderURL),
 				projection, null, null, null);
-		if (userCursor.moveToFirst()) {
+		if (userCursor != null && userCursor.moveToFirst()) {
 
 			int nameColumn = userCursor.getColumnIndex("name");
 			int idColumn = userCursor.getColumnIndex("_id");
@@ -312,7 +319,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 							Toast.makeText(MainActivity.this, "您什么都没有输入哦~",
 									Toast.LENGTH_LONG).show();
 						} else {
-							if (!cursor.moveToNext()) {
+							if (cursor != null && !cursor.moveToNext()) {
 								values.put("location", location);
 								db.insert("user", null, values);
 							} else
@@ -332,7 +339,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		int num = cursor.getCount();
 		final String[] location = new String[num];
 		int i = 0;
-		while (cursor.moveToNext()) {
+		while (cursor != null && cursor.moveToNext()) {
 			location[i] = cursor.getString(cursor.getColumnIndex("location"));
 			i++;
 		}
@@ -398,6 +405,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 					}
 				}).setNegativeButton("取消", null).show();
 	}
+
 	/*
 	 * ==========================================================================
 	 * ============== Menu

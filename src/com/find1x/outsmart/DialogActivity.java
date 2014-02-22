@@ -36,7 +36,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class DialogActivity extends Activity implements OnClickListener{
+public class DialogActivity extends Activity implements OnClickListener {
 
 	private TextView sendertextView = null;
 	private TextView timeSMStextView = null;
@@ -61,7 +61,6 @@ public class DialogActivity extends Activity implements OnClickListener{
 
 	private boolean isClear_Event = false;
 	private boolean isClear_Location = false;
-
 
 	/** 发送与接收的广播 **/
 	String SENT_SMS_ACTION = "SENT_SMS_ACTION";
@@ -129,7 +128,7 @@ public class DialogActivity extends Activity implements OnClickListener{
 		Intent intent = getIntent();
 		String content = intent.getStringExtra("content");
 		String address = intent.getStringExtra("address");
-		//String person = intent.getStringExtra("person");
+		// String person = intent.getStringExtra("person");
 		Long date = intent.getLongExtra("date", 0);
 		String id = Contact.getContactId(this, address);
 		GetUserTime getUserTime = new GetUserTime(content);
@@ -294,7 +293,8 @@ public class DialogActivity extends Activity implements OnClickListener{
 			String raw = "select location from user where location=\'"
 					+ location_Temp + "\'";
 			Cursor cursor = db.rawQuery(raw, null);
-			if (!cursor.moveToNext() && !location_Temp.equals("")
+			if (cursor != null && !cursor.moveToNext()
+					&& !location_Temp.equals("")
 					&& !location_Temp.equals("请选择地点")) {
 				String sql = "insert or ignore into user(location) values('"
 						+ location_Temp + "');";
