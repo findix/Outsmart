@@ -452,19 +452,30 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		} else {
 			actionSwitch.setChecked(false);
 		}
-		actionSwitch.setOnCheckedChangeListener(onCheckedChangeListener);
+		actionSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				Persistence setSwitch = new Persistence("Setting.db");
+				setSwitch.changeValue(actionSwitch.isChecked() ? 1 : 0);
+			}
+		});
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
-
-		@Override
-		public void onCheckedChanged(CompoundButton buttonView,
-				boolean isChecked) {
-			Persistence setSwitch = new Persistence("Setting.db");
-			setSwitch.changeValue(actionSwitch.isChecked() ? 1 : 0);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_about:
+			Intent intent = new Intent(this, AboutActivity.class);
+			startActivity(intent);
+			break;
+		default:
+			break;
 		}
-	};
+		return super.onOptionsItemSelected(item);
+	}
 
 	/*
 	 * ==========================================================================

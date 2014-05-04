@@ -92,6 +92,11 @@
             android:excludeFromRecents="true"
             android:theme="@style/DialogTheme" >
         </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/MainTheme" >
+        </activity>
         <!-- —————————————————————————————————————————————————————————————————————————————————————————————— -->
         <service
             android:name=".SmsReceiverService"

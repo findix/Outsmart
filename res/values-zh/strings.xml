@@ -2,9 +2,10 @@
 
     <string name="app_name">智取</string>
     <string name="hello_world">你好世界!</string>
-    <string name="menu_settings">上海市科技创新项目@SHIEP</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_switch">开关</string>
     <string name="title_activity_main">智取</string>
-    <string name="Copyright">Copyright © 2012–2013 FengXiang &amp; LinFeng.</string>
+    <string name="Copyright">©2014 FindiX Studio</string>
     <!--  -->
     <string name="new_reminder">新建提醒</string>
      <string name="show_last_SMS">最后一条短信</string>
