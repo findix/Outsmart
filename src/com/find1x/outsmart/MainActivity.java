@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 import org.jraf.android.backport.switchwidget.Switch;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.find1x.outsmart.backup.BackupTask;
-import com.find1x.outsmart.db.DatabaseHelper;
-import com.find1x.outsmart.segmentation.CopyDic;
-import com.find1x.outsmart.segmentation.Persistence;
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnMultiChoiceClickListener;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,13 +20,15 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnMultiChoiceClickListener;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.find1x.outsmart.backup.BackupTask;
+import com.find1x.outsmart.db.DatabaseHelper;
+import com.find1x.outsmart.segmentation.CopyDic;
+import com.find1x.outsmart.segmentation.Persistence;
 
 public class MainActivity extends SherlockPreferenceActivity implements
 		OnPreferenceClickListener {
@@ -99,8 +100,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 				"body", "date", "type" };
 		final Cursor cur = getContentResolver().query(uri, projectionSMS, null,
 				null, "date desc");
-		if (cur != null) {
-			cur.moveToFirst();
+		if (cur != null && cur.moveToFirst()) {
 			int id = cur.getInt(cur.getColumnIndex("_id"));
 			Persistence smsId = new Persistence("sms.db");
 			smsId.changeValue(id);
@@ -167,8 +167,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 				"body", "date", "type" };
 		final Cursor cur = getContentResolver().query(uri, projectionSMS, null,
 				null, "date desc");
-		if (cur != null) {
-			cur.moveToFirst();
+		if (cur != null && cur.moveToFirst()) {
 			Intent intent = new Intent();
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.setClass(MainActivity.this, DialogActivity.class);
@@ -200,28 +199,31 @@ public class MainActivity extends SherlockPreferenceActivity implements
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						// TODO Auto-generated method stub
-						cur.moveToFirst();
-						for (int i = 0; i <= arg1; i++) {
-							if (i == arg1) {
-								Intent intent = new Intent();
-								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								intent.setClass(MainActivity.this,
-										DialogActivity.class);
-								// intent.setClass(this,
-								// ReplyActivity.class);
-								intent.putExtra("content", cur.getString(cur
-										.getColumnIndex("body")));
-								intent.putExtra("address", cur.getString(cur
-										.getColumnIndex("address")));
-								intent.putExtra("person", cur.getString(cur
-										.getColumnIndex("person")));
-								intent.putExtra("date",
-										cur.getLong(cur.getColumnIndex("date")));
-								// System.out.println(cur.getString(cur.getColumnIndex("address")));
-								if (actionSwitch.isChecked())
-									startActivity(intent);
+						if (cur != null && cur.moveToFirst()) {
+							for (int i = 0; i <= arg1; i++) {
+								if (i == arg1) {
+									Intent intent = new Intent();
+									intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+									intent.setClass(MainActivity.this,
+											DialogActivity.class);
+									// intent.setClass(this,
+									// ReplyActivity.class);
+									intent.putExtra("content", cur
+											.getString(cur
+													.getColumnIndex("body")));
+									intent.putExtra("address", cur
+											.getString(cur
+													.getColumnIndex("address")));
+									intent.putExtra("person", cur.getString(cur
+											.getColumnIndex("person")));
+									intent.putExtra("date", cur.getLong(cur
+											.getColumnIndex("date")));
+									// System.out.println(cur.getString(cur.getColumnIndex("address")));
+									if (actionSwitch.isChecked())
+										startActivity(intent);
+								}
+								cur.moveToNext();
 							}
-							cur.moveToNext();
 						}
 					}
 				}, "body").show();
