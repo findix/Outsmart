@@ -9,25 +9,25 @@ public class AutoStartBroadcastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 		if (arg1.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-//			// ---------声明一个Intent,打开一个Activity;
+//			// ---------脡霉脙梅脪禄赂枚Intent,麓貌驴陋脪禄赂枚Activity;
 //			Intent intent_Activity = new Intent(arg0, My_android_Activity.class);
-//			// 设置启动的Action,不是强制的；
+//			// 脡猫脰脙脝么露炉碌脛Action,虏禄脢脟脟驴脰脝碌脛拢禄
 //			intent_Activity.setAction("android.intent.action.MAIN");
-//			// 添加category，,不是强制的；
+//			// 脤铆录脫category拢卢,虏禄脢脟脟驴脰脝碌脛拢禄
 //			intent_Activity.addCategory("android.intent.category.LAUNCHER");
 //			/*
-//			 * 如果活动是在不活动的环境下展开，这个标志是强制性的设置，必须加；
-//			 * 为刚要启动的Activity设置启动参数，此参数申明启动时为Activity开辟新的栈。
+//			 * 脠莽鹿没禄卯露炉脢脟脭脷虏禄禄卯露炉碌脛禄路戮鲁脧脗脮鹿驴陋拢卢脮芒赂枚卤锚脰戮脢脟脟驴脰脝脨脭碌脛脡猫脰脙拢卢卤脴脨毛录脫拢禄
+//			 * 脦陋赂脮脪陋脝么露炉碌脛Activity脡猫脰脙脝么露炉虏脦脢媒拢卢麓脣虏脦脢媒脡锚脙梅脝么露炉脢卤脦陋Activity驴陋卤脵脨脗碌脛脮禄隆拢
 //			 */
 //			intent_Activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //
-//			// 启动activity
+//			// 脝么露炉activity
 //			arg0.startActivity(intent_Activity);
 
-			// --------声明一个Intent用以启动一个Service;
+			// --------脡霉脙梅脪禄赂枚Intent脫脙脪脭脝么露炉脪禄赂枚Service;
 
 			Intent intent_service = new Intent(arg0, SmsReceiverService.class);
-			// 可以在服务里面进行一些用户不需要知道的操作，比如更新。
+			// 驴脡脪脭脭脷路镁脦帽脌茂脙忙陆酶脨脨脪禄脨漏脫脙禄搂虏禄脨猫脪陋脰陋碌脌碌脛虏脵脳梅拢卢卤脠脠莽赂眉脨脗隆拢
 			arg0.startService(intent_service);
 
 		}
