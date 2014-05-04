@@ -3,20 +3,20 @@ package com.find1x.outsmart.segmentation;
 import java.util.ArrayList;
 import java.util.Stack;
 
-
 public class SegmentationByBloom {
 	static byte[] dic = null;
 	static GetHash GH = new GetHash();
 
 	public SegmentationByBloom() {
-		//long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
+		// long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
 		dic = GetDicBloom.getBloom();
-		//Log.i("Input Dic Time", Calendar.getInstance().getTimeInMillis()- ftime + "");// 结束时间
+		// Log.i("Input Dic Time", Calendar.getInstance().getTimeInMillis()-
+		// ftime + ");// 结束时间
 	}
 
 	public static void getDic() {
 		for (int i = 0; i <= dic.length; i++) {
-			//System.out.println(i + " " + (dic[i] - 48));
+			// System.out.println(i + " " + (dic[i] - 48));
 		}
 	}
 
@@ -54,8 +54,8 @@ public class SegmentationByBloom {
 		list.clear();
 		while (!stack.empty())
 			list.add(stack.pop() + "");
-		list=getCharTogether(list);
-		list=makeNoSpace(list);
+		list = getCharTogether(list);
+		list = makeNoSpace(list);
 		return list;
 	}
 
@@ -70,8 +70,8 @@ public class SegmentationByBloom {
 	}
 
 	public static ArrayList<String> makeNoSpace(ArrayList<String> list) {
-		for (int i = 0; i < list.size()-1; i++) {
-			//System.out.println(list.get(i));
+		for (int i = 0; i < list.size() - 1; i++) {
+			// System.out.println(list.get(i));
 			if (list.get(i).equals(" ")) {
 				list.remove(i);
 				i--;
@@ -103,9 +103,9 @@ public class SegmentationByBloom {
 						|| (str.charAt(0) == '：')
 						|| (str.charAt(0) >= '0' && str.charAt(0) <= '9')
 						|| (str.charAt(0) >= 'a' && str.charAt(0) <= 'z') || (str
-						.charAt(0) >= 'A' && str.charAt(0) <= 'Z')))
+						.charAt(0) >= 'A' && str.charAt(0) <= 'Z'))) {
 			return true;
+		}
 		return false;
 	}
-
 }

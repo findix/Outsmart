@@ -6,6 +6,7 @@ import org.jraf.android.backport.switchwidget.Switch;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -29,6 +32,7 @@ import com.find1x.outsmart.backup.BackupTask;
 import com.find1x.outsmart.db.DatabaseHelper;
 import com.find1x.outsmart.segmentation.CopyDic;
 import com.find1x.outsmart.segmentation.Persistence;
+import com.umeng.analytics.MobclickAgent;
 
 public class MainActivity extends SherlockPreferenceActivity implements
 		OnPreferenceClickListener {
@@ -81,6 +85,9 @@ public class MainActivity extends SherlockPreferenceActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 输出设备信息
+		Log.i("设备信息", getDeviceInfo(this));
+
 		// 初始化设置界面
 		addPreferencesFromResource(R.xml.preference);
 		// 复制字典
@@ -98,13 +105,14 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		Uri uri = Uri.parse(SMS_URI_INBOX);
 		String[] projectionSMS = new String[] { "_id", "address", "person",
 				"body", "date", "type" };
-		final Cursor cur = getContentResolver().query(uri, projectionSMS, null,
-				null, "date desc");
+		Cursor cur = getContentResolver().query(uri, projectionSMS, null, null,
+				"date desc");
 		if (cur != null && cur.moveToFirst()) {
 			int id = cur.getInt(cur.getColumnIndex("_id"));
 			Persistence smsId = new Persistence("sms.db");
 			smsId.changeValue(id);
 		}
+
 		// 设置日历
 		new Persistence("CalendarSet.db");
 
@@ -126,6 +134,18 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		deleteLocation.setOnPreferenceClickListener(this);
 		backup.setOnPreferenceClickListener(this);
 		restore.setOnPreferenceClickListener(this);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 
 	/*
@@ -184,6 +204,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 			if (actionSwitch.isChecked())
 				startActivity(intent);
 		}
+
 	}
 
 	private void ShowSMSDo() {
@@ -227,6 +248,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 						}
 					}
 				}, "body").show();
+
 	}
 
 	private void editSMSDo() {
@@ -271,6 +293,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 				calId.add(userCursor.getString(idColumn));
 			} while (userCursor.moveToNext());
 		}
+		userCursor.close();
 		Persistence setCalendar = new Persistence("CalendarSet.db");
 		which = setCalendar.getValue() - 1;
 		// System.out.println(calName + " " + calId);
@@ -329,7 +352,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 										"我已经知道" + "\"" + location + "\"" + "啦",
 										Toast.LENGTH_LONG).show();
 						}
-
+						cursor.close();
 						db.close();
 					}
 				}).setNegativeButton("取消", null).show();
@@ -345,6 +368,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 			location[i] = cursor.getString(cursor.getColumnIndex("location"));
 			i++;
 		}
+		cursor.close();
 		db.close();
 
 		final boolean[] defaultSelectedStatus = new boolean[num];
@@ -456,6 +480,40 @@ public class MainActivity extends SherlockPreferenceActivity implements
 			new BackupTask(this).execute("restroeDatabase");
 			Toast.makeText(this, "还原成功", Toast.LENGTH_LONG).show();
 		}
+	}
+
+	// Umeng 测试设备识别码输出
+	public static String getDeviceInfo(Context context) {
+		try {
+			org.json.JSONObject json = new org.json.JSONObject();
+			android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
+					.getSystemService(Context.TELEPHONY_SERVICE);
+
+			String device_id = tm.getDeviceId();
+
+			android.net.wifi.WifiManager wifi = (android.net.wifi.WifiManager) context
+					.getSystemService(Context.WIFI_SERVICE);
+
+			String mac = wifi.getConnectionInfo().getMacAddress();
+			json.put("mac", mac);
+
+			if (TextUtils.isEmpty(device_id)) {
+				device_id = mac;
+			}
+
+			if (TextUtils.isEmpty(device_id)) {
+				device_id = android.provider.Settings.Secure.getString(
+						context.getContentResolver(),
+						android.provider.Settings.Secure.ANDROID_ID);
+			}
+
+			json.put("device_id", device_id);
+
+			return json.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

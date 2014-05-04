@@ -15,13 +15,13 @@ public class SmsReceiverService extends Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-    @Override  
-    public void onCreate() {  
-    	System.out.println("服务已创建");
+
+	@Override
+	public void onCreate() {
+		// System.out.println("服务已创建");
 		SmsReceiver smsReceiver = new SmsReceiver(new Handler(), this);
 		this.getContentResolver().registerContentObserver(
 				Uri.parse("content://sms"), true, smsReceiver);
-    }  
+	}
 
 }

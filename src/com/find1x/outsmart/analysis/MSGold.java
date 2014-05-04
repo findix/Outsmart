@@ -2,10 +2,10 @@ package com.find1x.outsmart.analysis;
 
 import java.util.*;
 
-/* 	getTime()Îª»ñÈ¡Ê±¼äµÄº¯Êı,·µ»ØÒ»¸ödateÖµ
- * 	getLocation()»ñÈ¡Î»ÖÃ£¬·µ»ØString
- * 	ÓĞ2¸ö¹¹Ôìº¯Êı Ò»¸öÊÇÒÔStringÎª²ÎÊıµÄ ÁíÒ»¸öÎŞ²ÎÊı£¬Í¨¹ısetMsg²ÎÊıÎªString ¸Ä±ä¶ÌĞÅµÄÖµ
- *	Warning£ºisMeeting ±ØĞëÒªÔÚgetTimeºÍgetLocationÖ®ºóÊ¹ÓÃ
+/* 	getTime()ä¸ºè·å–æ—¶é—´çš„å‡½æ•°,è¿”å›ä¸€ä¸ªdateå€¼
+ * 	getLocation()è·å–ä½ç½®ï¼Œè¿”å›String
+ * 	æœ‰2ä¸ªæ„é€ å‡½æ•° ä¸€ä¸ªæ˜¯ä»¥Stringä¸ºå‚æ•°çš„ å¦ä¸€ä¸ªæ— å‚æ•°ï¼Œé€šè¿‡setMsgå‚æ•°ä¸ºString æ”¹å˜çŸ­ä¿¡çš„å€¼
+ *	Warningï¼šisMeeting å¿…é¡»è¦åœ¨getTimeå’ŒgetLocationä¹‹åä½¿ç”¨
  */
 
 public class MSGold {
@@ -30,19 +30,19 @@ public class MSGold {
 		Date time = new Date();
 		time.setSeconds(0);
 		/*
-		 * //½ñÌì Ã÷Ìì ºóÌì ´óºóÌì for(int i=0;i<msg.length();i++){ if(msg.charAt(i)=='½ñ'
-		 * && msg.charAt(i+1)=='Ìì'){ //time.setDate(time.getDate()+1);
-		 * isMeeting=true; break; } if(msg.charAt(i)=='Ã÷' &&
-		 * msg.charAt(i+1)=='Ìì'){ time.setDate(time.getDate()+1); break; }
-		 * if(msg.charAt(i)=='ºó' && msg.charAt(i+1)=='Ìì'){
-		 * time.setDate(time.getDate()+2); break; } if(msg.charAt(i)=='´ó' &&
-		 * msg.charAt(i+1)=='ºó' && msg.charAt(i+2)=='Ìì'){
+		 * //ä»Šå¤© æ˜å¤© åå¤© å¤§åå¤© for(int i=0;i<msg.length();i++){ if(msg.charAt(i)=='ä»Š'
+		 * && msg.charAt(i+1)=='å¤©'){ //time.setDate(time.getDate()+1);
+		 * isMeeting=true; break; } if(msg.charAt(i)=='æ˜' &&
+		 * msg.charAt(i+1)=='å¤©'){ time.setDate(time.getDate()+1); break; }
+		 * if(msg.charAt(i)=='å' && msg.charAt(i+1)=='å¤©'){
+		 * time.setDate(time.getDate()+2); break; } if(msg.charAt(i)=='å¤§' &&
+		 * msg.charAt(i+1)=='å' && msg.charAt(i+2)=='å¤©'){
 		 * time.setDate(time.getDate()+3); break; } }
-		 */// ¼¯³ÉÓÚtimeFixed();
+		 */// é›†æˆäºtimeFixed();
 
-		// xxxxÄê/xxÄê XXÔÂXXÈÕ
+		// xxxxå¹´/xxå¹´ XXæœˆXXæ—¥
 		for (int i = 0; i < msg.length(); i++) {
-			if (msg.charAt(i) == 'Äê') {
+			if (msg.charAt(i) == 'å¹´') {
 				if ((msg.charAt(i - 1) >= '0' && msg.charAt(i - 1) <= '9')
 						&& (msg.charAt(i - 2) >= '0' && msg.charAt(i - 2) <= '9')
 						&& (msg.charAt(i - 2) >= '0' && msg.charAt(i - 2) <= '9')
@@ -53,7 +53,7 @@ public class MSGold {
 					time.setYear(Integer.valueOf(msg.substring(i - 2, i)));
 				}
 			}
-			if (msg.charAt(i) == 'ÔÂ') {
+			if (msg.charAt(i) == 'æœˆ') {
 				if ((msg.charAt(i - 1) >= '0' && msg.charAt(i - 1) <= '9')
 						&& (msg.charAt(i - 2) >= '0' && msg.charAt(i - 2) <= '9')) {
 					time.setMonth(Integer.valueOf(msg.substring(i - 2, i)) - 1);
@@ -61,7 +61,7 @@ public class MSGold {
 					time.setMonth(Integer.valueOf(msg.substring(i - 1, i)) - 1);
 				}
 			}
-			if (msg.charAt(i) == 'ÈÕ' || msg.charAt(i) == 'ºÅ') {
+			if (msg.charAt(i) == 'æ—¥' || msg.charAt(i) == 'å·') {
 				if ((msg.charAt(i - 1) >= '0' && msg.charAt(i - 1) <= '9')
 						&& (msg.charAt(i - 2) >= '0' && msg.charAt(i - 2) <= '9')) {
 					time.setDate(Integer.valueOf(msg.substring(i - 2, i)));
@@ -70,10 +70,10 @@ public class MSGold {
 				}
 			}
 		}
-		// X£º/µãX
+		// Xï¼š/ç‚¹X
 		for (int i = 0; i < msg.length(); i++) {
-			if (msg.charAt(i) == ':' || msg.charAt(i) == '£º'
-					|| msg.charAt(i) == 'µã') {
+			if (msg.charAt(i) == ':' || msg.charAt(i) == 'ï¼š'
+					|| msg.charAt(i) == 'ç‚¹') {
 				if ((msg.charAt(i - 1) >= '0' && msg.charAt(i - 1) <= '9')
 						&& (msg.charAt(i - 2) >= '0' && msg.charAt(i - 2) <= '9')) {
 					time.setHours(Integer.valueOf(msg.substring(i - 2, i)));
@@ -91,15 +91,15 @@ public class MSGold {
 			}
 		}
 		/*
-		 * //ÏÂÎç\ÉÏÎçXµãX for(int i=0;i<msg.length();i++){ if((msg.charAt(i)=='ÉÏ' &&
-		 * msg.charAt(i+1)=='Îç') || (msg.charAt(i)=='ÏÂ' &&
-		 * msg.charAt(i+1)=='Îç')){ if((msg.charAt(i+2)>='0' &&
+		 * //ä¸‹åˆ\ä¸ŠåˆXç‚¹X for(int i=0;i<msg.length();i++){ if((msg.charAt(i)=='ä¸Š' &&
+		 * msg.charAt(i+1)=='åˆ') || (msg.charAt(i)=='ä¸‹' &&
+		 * msg.charAt(i+1)=='åˆ')){ if((msg.charAt(i+2)>='0' &&
 		 * msg.charAt(i+2)<='9')&&(msg.charAt(i+3)>='0' &&
 		 * msg.charAt(i+3)<='9')){
 		 * time.setHours(Integer.valueOf(msg.substring(i+2,i+4))); }else
 		 * if(msg.charAt(i+2)>='0' && msg.charAt(i+2)<='9'){
 		 * time.setHours(Integer.valueOf(msg.substring(i+2,i+3))); }
-		 * if(msg.charAt(i+2)=='µã'||msg.charAt(i+3)=='µã'){
+		 * if(msg.charAt(i+2)=='ç‚¹'||msg.charAt(i+3)=='ç‚¹'){
 		 * if((msg.charAt(i+1)>='0' &&
 		 * msg.charAt(i+1)<='9')&&(msg.charAt(i+2)>='0' &&
 		 * msg.charAt(i+2)<='9')){
@@ -137,23 +137,23 @@ public class MSGold {
 		return location;
 	}
 
-	// °øÍí ÍíÉÏ ÎçÒ¹ °ëÒ¹
+	// å‚æ™š æ™šä¸Š åˆå¤œ åŠå¤œ
 	private void timeFixed(int n, Date time) {
 		if (time.getHours() < 12) {
 			for (int i = n - 1; i >= 0; i--) {
-				if (msg.charAt(i) == 'Îç' && msg.charAt(i - 1) == 'ÏÂ') {
+				if (msg.charAt(i) == 'åˆ' && msg.charAt(i - 1) == 'ä¸‹') {
 					time.setHours(time.getHours() + 12);
 					break;
 				}
-				if (msg.charAt(i) == 'Íí' && msg.charAt(i - 1) == '°ø') {
+				if (msg.charAt(i) == 'æ™š' && msg.charAt(i - 1) == 'å‚') {
 					time.setHours(time.getHours() + 12);
 					break;
 				}
-				if (msg.charAt(i) == 'Ò¹' && msg.charAt(i - 1) == 'Îç') {
+				if (msg.charAt(i) == 'å¤œ' && msg.charAt(i - 1) == 'åˆ') {
 					time.setHours(time.getHours() + 12);
 					break;
 				}
-				if (msg.charAt(i) == 'Ò¹' && msg.charAt(i - 1) == '°ë') {
+				if (msg.charAt(i) == 'å¤œ' && msg.charAt(i - 1) == 'åŠ') {
 					time.setHours(time.getHours() + 12);
 					break;
 				}
@@ -161,32 +161,32 @@ public class MSGold {
 		}
 
 		for (int i = n - 1; i > 0; i--) {
-			if (msg.charAt(i) == '³¿' && msg.charAt(i - 1) == 'Áè') {
+			if (msg.charAt(i) == 'æ™¨' && msg.charAt(i - 1) == 'å‡Œ') {
 				time.setDate(time.getDate() + 1);
 				break;
 			}
-			if (msg.charAt(i) == 'Íí' && msg.charAt(i - 1) == 'Ã÷') {
+			if (msg.charAt(i) == 'æ™š' && msg.charAt(i - 1) == 'æ˜') {
 				time.setDate(time.getDate() + 1);
 				if (time.getHours() < 12) {
 					time.setHours(time.getHours() + 12);
 				}
 				break;
 			}
-			if (msg.charAt(i - 1) == '½ñ' && msg.charAt(i) == 'Ìì') {
+			if (msg.charAt(i - 1) == 'ä»Š' && msg.charAt(i) == 'å¤©') {
 				// time.setDate(time.getDate()+1);
 				break;
 			}
-			if (msg.charAt(i - 1) == 'Ã÷' && msg.charAt(i) == 'Ìì') {
+			if (msg.charAt(i - 1) == 'æ˜' && msg.charAt(i) == 'å¤©') {
 				time.setDate(time.getDate() + 1);
 				break;
 			}
-			if (msg.charAt(i - 1) == 'ºó' && msg.charAt(i) == 'Ìì') {
+			if (msg.charAt(i - 1) == 'å' && msg.charAt(i) == 'å¤©') {
 				time.setDate(time.getDate() + 2);
 				break;
 			}
 			if (i >= 2) {
-				if (msg.charAt(i - 2) == '´ó' && msg.charAt(i - 1) == 'ºó'
-						&& msg.charAt(i) == 'Ìì') {
+				if (msg.charAt(i - 2) == 'å¤§' && msg.charAt(i - 1) == 'å'
+						&& msg.charAt(i) == 'å¤©') {
 					time.setDate(time.getDate() + 3);
 					break;
 				}
@@ -196,9 +196,9 @@ public class MSGold {
 	}
 
 	private boolean isMeeting = false;
-	private final char[] LocationEasy = { '±±', 'ÄÏ' };
-	private final String[] LocationComplex = { "ÖªĞĞÂ¥", "ÖÁ³ÏÂ¥", "·Ü½øÂ¥", "î£Ë¼Â¥",
-			"ÄÏÌåÓı¹İ", "ÄÏ²Ù³¡", "ÄÏÍ¼", "±±Í¼", "ÄÏÍ¼Êé¹İ", "±±Í¼Êé¹İ", "ÈıÊ³ÌÃ", "±±Ê³ÌÃ", "ÄÏÊ³ÌÃ",
-			"Ò»Ê³ÌÃ", "ÕÅÄÏÏßÖÕµãÕ¾", "ÕÅÄÏÏß", "Æ·³¢·Ã", "´óÑ§Éú»î¶¯ÖĞĞÄ", "38´±401c", "´ó»î",
-			"¸¨µ¼Ô±°ì¹«ÊÒ", "µ³Ô±Ö®¼Ò" };
+	private final char[] LocationEasy = { 'åŒ—', 'å—' };
+	private final String[] LocationComplex = { "çŸ¥è¡Œæ¥¼", "è‡³è¯šæ¥¼", "å¥‹è¿›æ¥¼", "ç¿æ€æ¥¼",
+			"å—ä½“è‚²é¦†", "å—æ“åœº", "å—å›¾", "åŒ—å›¾", "å—å›¾ä¹¦é¦†", "åŒ—å›¾ä¹¦é¦†", "ä¸‰é£Ÿå ‚", "åŒ—é£Ÿå ‚", "å—é£Ÿå ‚",
+			"ä¸€é£Ÿå ‚", "å¼ å—çº¿ç»ˆç‚¹ç«™", "å¼ å—çº¿", "å“å°è®¿", "å¤§å­¦ç”Ÿæ´»åŠ¨ä¸­å¿ƒ", "38å¹¢401c", "å¤§æ´»",
+			"è¾…å¯¼å‘˜åŠå…¬å®¤", "å…šå‘˜ä¹‹å®¶" };
 }

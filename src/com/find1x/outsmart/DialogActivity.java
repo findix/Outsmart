@@ -10,7 +10,9 @@ import com.find1x.outsmart.db.DatabaseHelper;
 import com.find1x.outsmart.segmentation.Persistence;
 import com.find1x.outsmart.sms.Contact;
 import com.find1x.outsmart.sms.SendSMS;
+import com.umeng.analytics.MobclickAgent;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -84,6 +86,7 @@ public class DialogActivity extends Activity implements OnClickListener {
 
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -166,9 +169,16 @@ public class DialogActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		MobclickAgent.onPause(this);
 		// 解除注册广播
 		// unregisterReceiver(sendMessage);
 		// unregisterReceiver(receiver);
@@ -397,6 +407,7 @@ public class DialogActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	protected Dialog onCreateDialog(int id) {
 		// 用来获取日期和时间的
 		// Calendar calendar = Calendar.getInstance();
@@ -451,6 +462,7 @@ public class DialogActivity extends Activity implements OnClickListener {
 			this.dialogId = dialogId;
 		}
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public void onClick(View view) {
 			showDialog(dialogId);

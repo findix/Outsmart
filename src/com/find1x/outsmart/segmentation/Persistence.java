@@ -5,9 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import android.content.Context;
-import android.provider.ContactsContract.Contacts;
-
 public class Persistence {
 	String fileName=new String();
 	String packagename="com.find1x.outsmart";
