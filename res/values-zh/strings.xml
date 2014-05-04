@@ -8,7 +8,7 @@
     <string name="Copyright">©2014 FindiX Studio</string>
     <!--  -->
     <string name="new_reminder">新建提醒</string>
-     <string name="show_last_SMS">最后一条短信</string>
+    <string name="show_last_SMS">最后一条短信</string>
     <string name="show_last_SMS_summary">以最后一条收到的短信新建提醒</string>
     <string name="show_SMS">显示短信</string>
     <string name="show_SMS_summary">从一条收到的短信新建提醒</string>
@@ -27,5 +27,7 @@
     <string name="backup_summary">备份地点数据</string>
     <string name="restore">还原</string>
     <string name="restore_summary">还原地点数据</string>
+    <!--  -->
+    <string name="zhiquu">本应用使用了Zhiquu离线中文分词引擎，如果您需要这方面的支持请联系\nfengxiang220@gmail.com</string>
 
 </resources>
