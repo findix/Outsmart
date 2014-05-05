@@ -89,7 +89,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// 输出设备信息
-		Log.i("设备信息", getDeviceInfo(this));
+		// Log.i("设备信息", getDeviceInfo(this));
 
 		// 自动更新
 		UmengUpdateAgent.update(this);
