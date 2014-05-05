@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.text.AndroidCharacter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.CompoundButton;
@@ -33,6 +34,8 @@ import com.find1x.outsmart.db.DatabaseHelper;
 import com.find1x.outsmart.segmentation.CopyDic;
 import com.find1x.outsmart.segmentation.Persistence;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.fb.FeedbackAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends SherlockPreferenceActivity implements
 		OnPreferenceClickListener {
@@ -87,6 +90,12 @@ public class MainActivity extends SherlockPreferenceActivity implements
 		super.onCreate(savedInstanceState);
 		// 输出设备信息
 		Log.i("设备信息", getDeviceInfo(this));
+
+		// 自动更新
+		UmengUpdateAgent.update(this);
+		// 设置新回复通知
+		FeedbackAgent agent = new FeedbackAgent(this);
+		agent.sync();
 
 		// 初始化设置界面
 		addPreferencesFromResource(R.xml.preference);

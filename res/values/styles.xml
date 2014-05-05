@@ -3,6 +3,8 @@
 
     <style name="AppTheme" parent="Theme.Sherlock.Light" />
 
+    <style name="FeedbackTheme" parent="@android:style/Theme.Light.NoTitleBar" />
+
     <style name="translucent" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@color/translucent_background</item>
         <item name="android:windowIsTranslucent">true</item>

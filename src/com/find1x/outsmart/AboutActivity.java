@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.umeng.fb.FeedbackAgent;
 
 public class AboutActivity extends SherlockActivity {
 	@Override
@@ -19,6 +21,8 @@ public class AboutActivity extends SherlockActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.activity_about, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -28,6 +32,9 @@ public class AboutActivity extends SherlockActivity {
 		case android.R.id.home:
 			finish();
 			break;
+		case R.id.action_feedback:
+			FeedbackAgent agent = new FeedbackAgent(this);
+			agent.startFeedbackActivity();
 		default:
 			break;
 		}

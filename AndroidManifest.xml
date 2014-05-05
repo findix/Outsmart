@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="7"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="19" />
 
     <!-- 系统权限————————————————————————————————————————————————————————————————————————————————— -->
     <!-- 读取联系人权限 -->
@@ -59,7 +59,7 @@
              <intent-filter android:priority="2147483647">
                  <action android:name="android.intent.action.BOOT_COMPLETED" />
              </intent-filter>
-        </receiver>
+        </receiver>
         -->
         <receiver
             android:name=".AutoStartBroadcastReceiver"
@@ -78,7 +78,6 @@
         <!-- activity注册—————————————————————————————————————————————————————————————————————————————————— -->
         <activity
             android:name=".MainActivity"
-            android:excludeFromRecents="true"
             android:label="@string/title_activity_main"
             android:theme="@style/MainTheme" >
             <intent-filter>
@@ -89,18 +88,28 @@
         </activity>
         <activity
             android:name=".DialogActivity"
-            android:excludeFromRecents="true"
             android:theme="@style/DialogTheme" >
         </activity>
         <activity
             android:name=".AboutActivity"
-            android:excludeFromRecents="true"
             android:theme="@style/MainTheme" >
         </activity>
-        <!-- —————————————————————————————————————————————————————————————————————————————————————————————— -->
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"
+            android:theme="@style/FeedbackTheme" />
+        <activity
+            android:name="com.umeng.fb.ContactActivity"
+            android:theme="@style/FeedbackTheme" />
+
         <service
-            android:name=".SmsReceiverService"
-            android:enabled="true" />
+            android:name="com.umeng.common.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -108,7 +117,12 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="FindiX" />
+            android:value="FindiX" >
+        </meta-data>
+        <!-- —————————————————————————————————————————————————————————————————————————————————————————————— -->
+        <service
+            android:name=".SmsReceiverService"
+            android:enabled="true" />
     </application>
 
 </manifest>
