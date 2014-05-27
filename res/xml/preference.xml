@@ -37,7 +37,7 @@
             android:title="@string/backup" />
         <Preference
             android:key="@string/restore"
-            android:summary="@string/backup_summary"
+            android:summary="@string/restore_summary"
             android:title="@string/restore" />
     </PreferenceCategory>
 

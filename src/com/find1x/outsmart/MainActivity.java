@@ -321,7 +321,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
 							}
 
 						})
-				.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int args2) {
 						// TODO Auto-generated method stub
