@@ -1,27 +1,25 @@
 package com.find1x.outsmart.sms;
 
-import com.find1x.outsmart.DialogActivity;
-import com.find1x.outsmart.analysis.GetUserTime;
-import com.find1x.outsmart.segmentation.Persistence;
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
-import android.util.Log;
+import com.find1x.outsmart.DialogActivity;
+import com.find1x.outsmart.analysis.GetUserTime;
+import com.find1x.outsmart.segmentation.Persistence;
 
 /**
- * class name£ºSmsReceiver<BR>
- * class description£ºÊý¾Ý¿â¸Ä±ä¼àÌýÀà<BR>
- * PS£ºµ±Êý¾Ý¸Ä±äµÄÊ±ºò£¬Ö´ÐÐÀïÃæ²Åchange·½·¨<BR>
+ * class nameï¿½ï¿½SmsReceiver<BR>
+ * class descriptionï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<BR>
+ * PSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¸Ä±ï¿½ï¿½Ê±ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½changeï¿½ï¿½ï¿½ï¿½<BR>
  * 
  * @version 1.00
  */
 public class SmsReceiver extends ContentObserver {
 	/**
-	 * Activity¶ÔÏó
+	 * Activityï¿½ï¿½ï¿½ï¿½
 	 */
 	private Context context;
 
@@ -47,8 +45,8 @@ public class SmsReceiver extends ContentObserver {
 		long date = cur.getLong(cur.getColumnIndex("date"));
 		int id = cur.getInt(cur.getColumnIndex("_id"));
 		cur.close();
-		// Log.i("¼àÌýµ½Êý¾Ý¿â±ä»¯", id + " " + address + " " + content + " " + person);
-		// ÕâÑùÆô¶¯Ò»¸öActivityÒ»¶¨Òª°ÑIntent´òÉÏFLAG_ACTIVITY_NEW_TASKµÄ±êÖ¾£¬²»È»»á±¨´í
+		// Log.i("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ä»¯", id + " " + address + " " + content + " " + person);
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ActivityÒ»ï¿½ï¿½Òªï¿½ï¿½Intentï¿½ï¿½ï¿½ï¿½FLAG_ACTIVITY_NEW_TASKï¿½Ä±ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½È»ï¿½á±¨ï¿½ï¿½
 		Intent intent = new Intent(context, DialogActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setClass(context, DialogActivity.class);

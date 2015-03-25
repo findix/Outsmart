@@ -1,23 +1,7 @@
-﻿package com.find1x.outsmart;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
-
-import com.find1x.outsmart.analysis.GetUserLocation;
-import com.find1x.outsmart.analysis.GetUserTime;
-import com.find1x.outsmart.db.DatabaseHelper;
-import com.find1x.outsmart.segmentation.Persistence;
-import com.find1x.outsmart.sms.Contact;
-import com.find1x.outsmart.sms.SendSMS;
-import com.umeng.analytics.MobclickAgent;
+package com.find1x.outsmart;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
+import android.app.*;
 import android.content.*;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.database.Cursor;
@@ -30,13 +14,18 @@ import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
+import android.widget.*;
+import com.find1x.outsmart.analysis.GetUserLocation;
+import com.find1x.outsmart.analysis.GetUserTime;
+import com.find1x.outsmart.db.DatabaseHelper;
+import com.find1x.outsmart.segmentation.Persistence;
+import com.find1x.outsmart.sms.Contact;
+import com.find1x.outsmart.sms.SendSMS;
+import com.umeng.analytics.MobclickAgent;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class DialogActivity extends Activity implements OnClickListener {
 
@@ -407,7 +396,7 @@ public class DialogActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	@SuppressLint("SimpleDateFormat")
+	@Override
 	protected Dialog onCreateDialog(int id) {
 		// 用来获取日期和时间的
 		// Calendar calendar = Calendar.getInstance();

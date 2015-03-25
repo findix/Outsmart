@@ -1,14 +1,14 @@
 package com.find1x.outsmart.db;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-
-//уБ╦ЖюЮсцсз╣╪хКassetsжп╣двж╣Д╣╫йж╩Зжп
+//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫з╣О©╫О©╫О©╫assetsО©╫п╣О©╫О©╫ж╣Д╣╫О©╫ж╩О©╫О©╫О©╫
 public class CopyAndGetSQL {
 
 	SQLiteDatabase database;
@@ -16,34 +16,34 @@ public class CopyAndGetSQL {
 	public SQLiteDatabase openDatabase(Context context) {
 		File dir = new File("data/data/" + context.getPackageName()
 				+ "/databases");
-		// ╡╩╢Фтзох╢╢╫╗нд╪Ч╪п
+		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╢О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫
 		if (!dir.exists() || !dir.isDirectory()) {
 			if (dir.mkdir()) {
-				System.out.println("╢╢╫╗Ёи╧╕");
+				System.out.println("О©╫О©╫О©╫О©╫О©╫и╧О©╫");
 			} else {
-				System.out.println("╢╢╫╗й╖╟э");
+				System.out.println("О©╫О©╫О©╫О©╫й╖О©╫О©╫");
 			}
 		}
 		File file = new File(dir, "dic2012.db3");
 		//System.out.println("filePath:" + dir);
-		// ╡И©╢йЩ╬щ©Бнд╪Чйг╥Я╢Фтз
+		// О©╫И©╢О©╫О©╫О©╫щ©О©╫О©╫д╪О©╫О©╫г╥О©╫О©╫О©╫О©╫
 		if (file.exists()) {
-			// ╢ФтзтРж╠╫с╥╣╩ь╢Р©╙╣дйЩ╬щ©Б
+			// О©╫О©╫О©╫О©╫О©╫О©╫ж╠О©╫с╥О©╫О©╫ь╢Р©╙╣О©╫О©╫О©╫О©╫щ©О©╫
 			return SQLiteDatabase.openOrCreateDatabase(file, null);
 		} else {
 			try {
-				// ╣ц╣╫йЩ╬щ©Б╣дйДхКаВ
+				// О©╫ц╣О©╫О©╫О©╫О©╫щ©О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 				InputStream is = context.getResources().getAssets()
 						.open("dic2012.db3");
-				// сцйДЁЖаВп╢╣╫йж╩Зио
+				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╢О©╫О©╫О©╫ж╩О©╫О©╫О©╫
 				FileOutputStream fos = new FileOutputStream(file);
-				// ╢╢╫╗byteйЩвИ сцсз1KBп╢р╩╢н
+				// О©╫О©╫О©╫О©╫byteО©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫1KBп╢р╩О©╫О©╫
 				byte[] buffer = new byte[1024];
 				int count = 0;
 				while ((count = is.read(buffer)) > 0) {
 					fos.write(buffer, 0, count);
 				}
-				// вН╨С╧ь╠у
+				// О©╫О©╫О©╫ь╠О©╫
 				fos.flush();
 				fos.close();
 				is.close();
@@ -52,7 +52,7 @@ public class CopyAndGetSQL {
 				e.printStackTrace();
 				return null;
 			}
-			// хГ╧Шц╩спуБ╦ЖйЩ╬щ©Б нрцгря╬╜╟якШп╢╣╫йж╩Зиоакё╛х╩╨Стзж╢ппр╩╢нуБ╦Ж╥╫╥╗ ╬м©ирт╥╣╩ьйЩ╬щ©Бак
+			// О©╫О©╫О©╫ц╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫щ©О©╫ О©╫О©╫О©╫О©╫О©╫я╬О©╫О©╫О©╫О©╫О©╫п╢О©╫О©╫О©╫ж╩О©╫О©╫О©╫О©╫кёО©╫х╩О©╫О©╫О©╫О©╫ж╢О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫м©О©╫О©╫т╥О©╫О©╫О©╫О©╫О©╫О©╫щ©О©╫О©╫О©╫
 			return openDatabase(context);
 		}
 	}

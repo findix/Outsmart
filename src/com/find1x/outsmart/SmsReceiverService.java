@@ -1,12 +1,11 @@
 package com.find1x.outsmart;
 
-import com.find1x.outsmart.sms.SmsReceiver;
-
 import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
+import com.find1x.outsmart.sms.SmsReceiver;
 
 public class SmsReceiverService extends Service {
 
@@ -18,7 +17,7 @@ public class SmsReceiverService extends Service {
 
 	@Override
 	public void onCreate() {
-		// System.out.println("·þÎñÒÑ´´½¨");
+		// System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½");
 		SmsReceiver smsReceiver = new SmsReceiver(new Handler(), this);
 		this.getContentResolver().registerContentObserver(
 				Uri.parse("content://sms"), true, smsReceiver);

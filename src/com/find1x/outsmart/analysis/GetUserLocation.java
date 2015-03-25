@@ -1,15 +1,14 @@
 package com.find1x.outsmart.analysis;
 
-import java.util.ArrayList;
-
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import com.find1x.outsmart.db.DatabaseHelper;
 import com.find1x.outsmart.segmentation.NoPunctuation;
 import com.find1x.outsmart.segmentation.NoStopword;
 import com.find1x.outsmart.segmentation.SegmentationByBloom;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import java.util.ArrayList;
 
 
 public class GetUserLocation {
@@ -33,7 +32,7 @@ public class GetUserLocation {
 	}
 
 	public String getUserLocation(Context context) {
-		// ½¨Á¢Êý¾Ý¿â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 		SQLiteDatabase db;
 		DatabaseHelper dbHelper = new DatabaseHelper(context, "user.db3");
 		db = dbHelper.getReadableDatabase();
@@ -50,6 +49,6 @@ public class GetUserLocation {
 		for (i=0;i<location.length;i++)
 			if (text.contains(location[i]))
 				return location[i];
-		return "ÇëÑ¡ÔñµØµã";
+		return "è¯·é€‰æ‹©åœ°ç‚¹";
 	}
 }

@@ -1,12 +1,13 @@
-﻿package com.find1x.outsmart.sms;
+package com.find1x.outsmart.sms;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.os.Vibrator;
+
 import java.util.Random;
-import android.app.Notification;
 
 public class TipHelper {
 	public static void Vibrate(final Activity activity, long milliseconds) {

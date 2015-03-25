@@ -1,15 +1,12 @@
-﻿package com.find1x.outsmart.sms;
-
-import java.io.FileReader;
-import java.io.IOException;
-
-import com.find1x.outsmart.DialogActivity;
-import com.find1x.outsmart.analysis.GetUserTime;
-
-
+package com.find1x.outsmart.sms;
 
 import android.content.*;
 import android.telephony.*;
+import com.find1x.outsmart.DialogActivity;
+import com.find1x.outsmart.analysis.GetUserTime;
+
+import java.io.FileReader;
+import java.io.IOException;
 
 public class SMSBroadcastReceiver extends BroadcastReceiver {
 

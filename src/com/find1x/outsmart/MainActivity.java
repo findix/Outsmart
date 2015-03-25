@@ -1,8 +1,4 @@
-﻿package com.find1x.outsmart;
-
-import java.util.ArrayList;
-
-import org.jraf.android.backport.switchwidget.Switch;
+package com.find1x.outsmart;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -17,14 +13,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.text.AndroidCharacter;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -36,6 +29,9 @@ import com.find1x.outsmart.segmentation.Persistence;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
+import org.jraf.android.backport.switchwidget.Switch;
+
+import java.util.ArrayList;
 
 public class MainActivity extends SherlockPreferenceActivity implements
 		OnPreferenceClickListener {

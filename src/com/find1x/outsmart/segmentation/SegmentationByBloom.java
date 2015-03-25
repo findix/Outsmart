@@ -8,10 +8,10 @@ public class SegmentationByBloom {
 	static GetHash GH = new GetHash();
 
 	public SegmentationByBloom() {
-		// long ftime = Calendar.getInstance().getTimeInMillis();// ¿ªÊ¼Ê±¼ä
+		// long ftime = Calendar.getInstance().getTimeInMillis();// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 		dic = GetDicBloom.getBloom();
 		// Log.i("Input Dic Time", Calendar.getInstance().getTimeInMillis()-
-		// ftime + ");// ½áÊøÊ±¼ä
+		// ftime + ");// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	}
 
 	public static void getDic() {
@@ -47,7 +47,7 @@ public class SegmentationByBloom {
 				}
 			}
 		}
-		// °Ñ·Ö´Ê½á¹ûµ¹ÐòÊ¹ÆäÕýÐò
+		// ï¿½Ñ·Ö´Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Stack<String> stack = new Stack<String>();
 		for (i = 0; i < list.size(); i++)
 			stack.push(list.get(i));
@@ -100,7 +100,7 @@ public class SegmentationByBloom {
 	private static boolean isW(String str) {
 		if (str.length() == 1
 				&& ((str.charAt(0) == '.') || (str.charAt(0) == ':')
-						|| (str.charAt(0) == '£º')
+						|| (str.charAt(0) == 'ï¼š')
 						|| (str.charAt(0) >= '0' && str.charAt(0) <= '9')
 						|| (str.charAt(0) >= 'a' && str.charAt(0) <= 'z') || (str
 						.charAt(0) >= 'A' && str.charAt(0) <= 'Z'))) {

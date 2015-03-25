@@ -1,11 +1,12 @@
 package com.find1x.outsmart.backup;
 
-import java.io.*;
-import java.nio.channels.FileChannel;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
+
+import java.io.*;
+import java.nio.channels.FileChannel;
 
 public class BackupTask extends AsyncTask<String, Void, Integer> {
 	private static final String COMMAND_BACKUP = "backupDatabase";
@@ -23,10 +24,10 @@ public class BackupTask extends AsyncTask<String, Void, Integer> {
 	@Override
 	protected Integer doInBackground(String... params) {
 		// TODO Auto-generated method stub
-		// »ñµÃÕýÔÚÊ¹ÓÃµÄÊý¾Ý¿âÂ·¾¶
-		// »ñÈ¡SD¿¨ÏÂµÄÓÃ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Â·ï¿½ï¿½
+		// ï¿½ï¿½È¡SDï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½
 		// Environment.getExternalStorageDirectory().getAbsolutePath()+"*.db."
-		// Ä¬ÈÏÂ·¾¶ÊÇ /data/data/(°üÃû)/databases/*.db3
+		// Ä¬ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ /data/data/(ï¿½ï¿½ï¿½ï¿½)/databases/*.db3
 		File dbFile = mContext.getDatabasePath("/data/data/"+packagename+"/databases/user.db3");
 		File exportDir = new File(Environment.getExternalStorageDirectory(),
 				"/findix/Backup");

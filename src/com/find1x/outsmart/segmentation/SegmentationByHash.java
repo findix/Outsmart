@@ -1,25 +1,25 @@
 package com.find1x.outsmart.segmentation;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
-
-import android.util.Log;
 
 public class SegmentationByHash {
 	HashSet<String> hash = new HashSet<String>();
 
 	public SegmentationByHash() {
-		long ftime = Calendar.getInstance().getTimeInMillis();// ¿ªÊ¼Ê±¼ä
+		long ftime = Calendar.getInstance().getTimeInMillis();// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 		hash = GetDic.getHash();
-		Log.i("µ¼ÈëhashsetÊ±¼ä", Calendar.getInstance().getTimeInMillis() - ftime
-				+ "");// ½áÊøÊ±¼ä
+		Log.i("ï¿½ï¿½ï¿½ï¿½hashsetÊ±ï¿½ï¿½", Calendar.getInstance().getTimeInMillis() - ftime
+				+ "");// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	}
 
 	public String[] getWords(String str) {
 		long ftime = Calendar.getInstance().getTimeInMillis();
 		ArrayList<String> list = getWordsbyArrayList(str);
-		Log.i("·Ö´ÊÊ±¼ä", Calendar.getInstance().getTimeInMillis() - ftime + "");// ½áÊøÊ±¼ä
+		Log.i("ï¿½Ö´ï¿½Ê±ï¿½ï¿½", Calendar.getInstance().getTimeInMillis() - ftime + "");// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		return (String[]) list.toArray(new String[list.size()]);
 	}
 
@@ -48,10 +48,10 @@ public class SegmentationByHash {
 
 	public boolean isInDicByHash(String source) {
 		if (hash.contains((source))) {
-			// Log.i(source, "ÕÒµ½");
+			// Log.i(source, "ï¿½Òµï¿½");
 			return true;
 		} else {
-			// Log.i(source, "Ã»ÕÒµ½");
+			// Log.i(source, "Ã»ï¿½Òµï¿½");
 			return false;
 		}
 	}

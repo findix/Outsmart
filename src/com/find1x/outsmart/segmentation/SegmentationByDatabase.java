@@ -1,14 +1,13 @@
 package com.find1x.outsmart.segmentation;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import com.find1x.outsmart.db.CopyAndGetSQL;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import com.find1x.outsmart.db.CopyAndGetSQL;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SegmentationByDatabase {
 	CopyAndGetSQL database = new CopyAndGetSQL();
@@ -16,9 +15,9 @@ public class SegmentationByDatabase {
 
 	public SegmentationByDatabase(Context context) {
 		db = database.openDatabase(context);
-		// long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
-		Log.i("我在干什么", "开始");
-		// Log.i("运行时间", Calendar.getInstance().getTimeInMillis() - ftime + "");
+		// long ftime = Calendar.getInstance().getTimeInMillis();// 锟斤拷始时锟斤拷
+		Log.i("锟斤拷锟节革拷什么", "锟斤拷始");
+		// Log.i("锟斤拷锟斤拷时锟斤拷", Calendar.getInstance().getTimeInMillis() - ftime + "");
 	}
 
 	public String[] getWords(String str, Context context) {
@@ -52,17 +51,17 @@ public class SegmentationByDatabase {
 	}
 
 	public boolean isInDicByDatabase(String source, Context context) {
-		long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
+		long ftime = Calendar.getInstance().getTimeInMillis();// 锟斤拷始时锟斤拷
 		String raw = "select dic from dic where dic=\'" + source + "\'";
 		Cursor cursor = db.rawQuery(raw, null);
 		if (cursor.moveToNext()) {
-			// Log.i(source, "找到");
-			Log.i("SQL查找时间", Calendar.getInstance().getTimeInMillis() - ftime
+			// Log.i(source, "锟揭碉拷");
+			Log.i("SQL锟斤拷锟斤拷时锟斤拷", Calendar.getInstance().getTimeInMillis() - ftime
 					+ "");
 			return true;
 		} else {
-			// Log.i(source, "没找到");
-			Log.i("SQL查找时间", Calendar.getInstance().getTimeInMillis() - ftime
+			// Log.i(source, "没锟揭碉拷");
+			Log.i("SQL锟斤拷锟斤拷时锟斤拷", Calendar.getInstance().getTimeInMillis() - ftime
 					+ "");
 			return false;
 		}

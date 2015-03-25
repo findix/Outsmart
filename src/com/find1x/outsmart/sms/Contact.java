@@ -1,8 +1,5 @@
 package com.find1x.outsmart.sms;
 
-import java.util.Random;
-
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;

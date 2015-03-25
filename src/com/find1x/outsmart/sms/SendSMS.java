@@ -1,15 +1,15 @@
 package com.find1x.outsmart.sms;
 
-import java.util.ArrayList;
-
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+
 public class SendSMS {
-	/** ·¢ËÍÓë½ÓÊÕµÄ¹ã²¥ **/
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÕµÄ¹ã²¥ **/
 	String SENT_SMS_ACTION = "SENT_SMS_ACTION";
 	String DELIVERED_SMS_ACTION = "DELIVERED_SMS_ACTION";
 	Context mContext = null;
@@ -39,7 +39,7 @@ public class SendSMS {
 		PendingIntent deliverPI = PendingIntent.getBroadcast(mContext, 0,
 				deliverIntent, 0);
 
-		// Èç¹û¶ÌÐÅÄÚÈÝ³¬¹ý70¸ö×Ö·û ½«ÕâÌõ¶ÌÐÅ²ð³É¶àÌõ¶ÌÐÅ·¢ËÍ³öÈ¥
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½70ï¿½ï¿½ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å·ï¿½ï¿½Í³ï¿½È¥
 		if (message.length() > 70) {
 			ArrayList<String> msgs = sms.divideMessage(message);
 			for (String msg : msgs) {

@@ -1,25 +1,25 @@
 package com.find1x.outsmart.segmentation;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import android.util.Log;
 
 public class SegmentationByString {
 	String str;
 
 	public SegmentationByString() {
-		long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
+		long ftime = Calendar.getInstance().getTimeInMillis();// 锟斤拷始时锟斤拷
 		//str = GetDic.getString();
 		str = GetDic.getString();
-		Log.i("导入String时间", Calendar.getInstance().getTimeInMillis() - ftime
-				+ "");// 结束时间
+		Log.i("锟斤拷锟斤拷String时锟斤拷", Calendar.getInstance().getTimeInMillis() - ftime
+				+ "");// 锟斤拷锟斤拷时锟斤拷
 	}
 
 	public String[] getWords(String str) {
 		long ftime = Calendar.getInstance().getTimeInMillis();
 		ArrayList<String> list = getWordsbyArrayList(str);
-		Log.i("分词时间", Calendar.getInstance().getTimeInMillis() - ftime + "");// 结束时间
+		Log.i("锟街达拷时锟斤拷", Calendar.getInstance().getTimeInMillis() - ftime + "");// 锟斤拷锟斤拷时锟斤拷
 		return (String[]) list.toArray(new String[list.size()]);
 	}
 
@@ -48,14 +48,14 @@ public class SegmentationByString {
 
 	public boolean isInDicByString(String source) {
 		int index;
-		index = str.indexOf("\n"+source + "\n");//快速分词
-		// index = str.indexOf("\r\n"+source + "\r\n");//高精确分词，但是效率很低
+		index = str.indexOf("\n"+source + "\n");//锟斤拷锟劫分达拷
+		// index = str.indexOf("\r\n"+source + "\r\n");//锟竭撅拷确锟街词ｏ拷锟斤拷锟斤拷效锟绞很碉拷
 		if (index != -1) {
 			// Log.i(source, str.substring(index - 1, index));
-			// Log.i(source, "找到");
+			// Log.i(source, "锟揭碉拷");
 			return true;
 		} else {
-			// Log.i(source, "没找到");
+			// Log.i(source, "没锟揭碉拷");
 			return false;
 		}
 	}

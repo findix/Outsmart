@@ -1,43 +1,43 @@
 package com.find1x.outsmart.segmentation;
 
+import android.content.Context;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.content.Context;
-
 public class CopyDic {
 	public CopyDic(Context context) {
-		//long ftime = Calendar.getInstance().getTimeInMillis();// ¿ªÊ¼Ê±¼ä
+		//long ftime = Calendar.getInstance().getTimeInMillis();// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 		final String FILE_NAME = "dic2012.db";
 		File dir = new File("data/data/" + context.getPackageName()
 				+ "/databases");
-		// ²»´æÔÚÏÈ´´½¨ÎÄ¼þ¼Ð
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 		if (!dir.exists() || !dir.isDirectory()) {
 			if (dir.mkdir()) {
-				System.out.println("´´½¨³É¹¦");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½");
 			} else {
-				System.out.println("´´½¨Ê§°Ü");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			}
 		}
 		File file = new File(dir, FILE_NAME);
 		// System.out.println("filePath:" + dir);
-		// ²é¿´ÎÄ¼þÊÇ·ñ´æÔÚ
+		// ï¿½é¿´ï¿½Ä¼ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 		if (!file.exists()) {
 			try {
-				// µÃµ½ÊäÈëÁ÷
+				// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				InputStream is = context.getResources().getAssets()
 						.open(FILE_NAME);
-				// ÓÃÊä³öÁ÷Ð´µ½ÊÖ»úÉÏ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½
 				FileOutputStream fos = new FileOutputStream(file);
-				// ´´½¨byteÊý×é ÓÃÓÚ1KBÐ´Ò»´Î
+				// ï¿½ï¿½ï¿½ï¿½byteï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1KBÐ´Ò»ï¿½ï¿½
 				byte[] buffer = new byte[1024];
 				int count = 0;
 				while ((count = is.read(buffer)) > 0) {
 					fos.write(buffer, 0, count);
 				}
-				// ×îºó¹Ø±Õ
+				// ï¿½ï¿½ï¿½Ø±ï¿½
 				fos.flush();
 				fos.close();
 				is.close();
