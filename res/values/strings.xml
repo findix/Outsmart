@@ -15,6 +15,10 @@
     <string name="edit_SMS">New custom alarm</string>
     <string name="edit_SMS_summary">Write down the information to make an new alarm</string>
     <!--  -->
+    <string name="search">Search</string>
+    <string name="search_calendar">Search in calendar</string>
+    <string name="search_calendar_summary">Search anything in calendar</string>
+    <!--  -->
     <string name="settings">Settings</string>
     <string name="choose_calendar">Select calendar</string>
     <string name="choose_calendar_summary">Select Calendar settings location</string>

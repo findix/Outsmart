@@ -15,6 +15,10 @@
     <string name="edit_SMS">快速新建提醒</string>
     <string name="edit_SMS_summary">自行编辑信息来快速添加一个提醒</string>
     <!--  -->
+    <string name="search">搜索</string>
+    <string name="search_calendar">在日历中搜索</string>
+    <string name="search_calendar_summary">在日历中搜索一切</string>
+    <!--  -->
     <string name="settings">设置</string>
     <string name="choose_calendar">选择日历</string>
     <string name="choose_calendar_summary">选择日历存储位置</string>

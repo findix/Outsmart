@@ -16,6 +16,12 @@
             android:summary="@string/edit_SMS_summary"
             android:title="@string/edit_SMS" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/search" >
+        <Preference
+                android:key="@string/search_calendar"
+                android:summary="@string/search_calendar_summary"
+                android:title="@string/search_calendar" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings" >
         <Preference
             android:key="@string/choose_calendar"

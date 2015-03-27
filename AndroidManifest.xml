@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="7"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="21" />
 
     <!-- 系统权限————————————————————————————————————————————————————————————————————————————————— -->
     <!-- 读取联系人权限 -->
@@ -59,7 +59,11 @@
              <intent-filter android:priority="2147483647">
                  <action android:name="android.intent.action.BOOT_COMPLETED" />
              </intent-filter>
-        </receiver>
+        </receiver>
+
+
+
+
         -->
         <receiver
             android:name=".AutoStartBroadcastReceiver"
