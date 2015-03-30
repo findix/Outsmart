@@ -10,6 +10,7 @@ public class EventModel {
     public long dtstart;
     public int hasAlarm;
     public long eventId;
+    public int positionInList;
 
     public EventModel(long calendarId, String title, String eventLocation, long dtstart, int hasAlarm, long eventId) {
         this.calendarId = calendarId;
