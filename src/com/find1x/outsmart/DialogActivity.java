@@ -9,10 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract.Events;
+import android.provider.CalendarContract.Reminders;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
-import android.view.*;
-import android.view.View.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.*;
 import com.find1x.outsmart.analysis.GetUserLocation;
@@ -29,11 +32,11 @@ import java.util.TimeZone;
 
 public class DialogActivity extends Activity implements OnClickListener {
 
-	private TextView sendertextView = null;
-	private TextView timeSMStextView = null;
-	private TextView smstextView = null;
-	private TextView timetextView = null;
-	private TextView datetextView = null;
+	private TextView senderTextView = null;
+	private TextView timeSMSTextView = null;
+	private TextView smsTextView = null;
+	private TextView timeTextView = null;
+	private TextView dateTextView = null;
 	private EditText editText_location = null;
 	private EditText editText_event = null;
 	private EditText editText = null;
@@ -57,24 +60,6 @@ public class DialogActivity extends Activity implements OnClickListener {
 	String SENT_SMS_ACTION = "SENT_SMS_ACTION";
 	String DELIVERED_SMS_ACTION = "DELIVERED_SMS_ACTION";
 
-	// private static String calanderURL = "";
-	private static String calanderEventURL = "";
-	private static String calanderRemiderURL = "";
-	// 为了兼容不同版本的日历,2.2以后url发生改变
-	static {
-		if (Build.VERSION.SDK_INT >= 8) {
-			// calanderURL = "content://com.android.calendar/calendars";
-			calanderEventURL = "content://com.android.calendar/events";
-			calanderRemiderURL = "content://com.android.calendar/reminders";
-		} else {
-			// calanderURL = "content://calendar/calendars";
-			calanderEventURL = "content://calendar/events";
-			calanderRemiderURL = "content://calendar/reminders";
-
-		}
-
-	}
-
 	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +68,11 @@ public class DialogActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dialog);
 		setTheme(R.style.DialogTheme);
-		sendertextView = (TextView) findViewById(R.id.sendertextView);
-		timeSMStextView = (TextView) findViewById(R.id.timeSMStextView);
-		datetextView = (TextView) findViewById(R.id.datetextView);
-		timetextView = (TextView) findViewById(R.id.timetextView);
-		smstextView = (TextView) findViewById(R.id.smstextView);
+		senderTextView = (TextView) findViewById(R.id.sendertextView);
+		timeSMSTextView = (TextView) findViewById(R.id.timeSMStextView);
+		dateTextView = (TextView) findViewById(R.id.datetextView);
+		timeTextView = (TextView) findViewById(R.id.timetextView);
+		smsTextView = (TextView) findViewById(R.id.smstextView);
 		btn_ok = (Button) findViewById(R.id.btn_ok);
 		btn_ok.setOnClickListener(this);
 		btn_cancel = (Button) findViewById(R.id.btn_cancel);
@@ -133,20 +118,20 @@ public class DialogActivity extends Activity implements OnClickListener {
 		SimpleDateFormat formatTime = new SimpleDateFormat("H:mm");
 		SimpleDateFormat formatSMSTime = new SimpleDateFormat("M月d日 H:mm");
 		if (id != null) {
-			sendertextView.setText(Contact.getDisplayName(this, id));
+			senderTextView.setText(Contact.getDisplayName(this, id));
 			if (Contact.getContactsPhoto(this, id) != null)
 				contact_imageView.setImageBitmap(Contact.getContactsPhoto(this,
 						id));
 		} else
-			sendertextView.setText(address);
+			senderTextView.setText(address);
 		if (date != 0)
-			timeSMStextView.setText(formatSMSTime.format(date));
-		datetextView.setText(formatDate.format(time.getTime()));
-		timetextView.setText(formatTime.format(time.getTime()));
+			timeSMSTextView.setText(formatSMSTime.format(date));
+		dateTextView.setText(formatDate.format(time.getTime()));
+		timeTextView.setText(formatTime.format(time.getTime()));
 
 		editText_location.setText(getUserLocation.getUserLocation(this));
 		editText_location.clearFocus();
-		smstextView.setText(content);
+		smsTextView.setText(content);
 
 		// 注册广播
 		// registerReceiver(sendMessage, new IntentFilter(SENT_SMS_ACTION));
@@ -252,33 +237,35 @@ public class DialogActivity extends Activity implements OnClickListener {
 			Persistence setCalendar = new Persistence("CalendarSet.db");
 			calId = (setCalendar.getValue()) + "";
 			ContentValues event = new ContentValues();
-			event.put("title", editText_event.getText().toString());
-			event.put("description", editText_event.getText().toString());
+			event.put(Events.TITLE, editText_event.getText().toString());
+			event.put(Events.DESCRIPTION, editText_event.getText().toString());
 			// 插入账户
 			if (!editText_location.equals("")
 					&& !editText_location.equals("请选择地点")) {
-				event.put("eventLocation", editText_location.getText()
+				event.put(Events.EVENT_LOCATION, editText_location.getText()
 						.toString());
 			}
-			event.put("calendar_id", calId);
+			event.put(Events.CALENDAR_ID, calId);
 			Calendar mCalendar = Calendar.getInstance();
 			mCalendar.set(Calendar.HOUR_OF_DAY, 10);
 			long start = time.getTimeInMillis();
 			mCalendar.set(Calendar.HOUR_OF_DAY, 11);
 			long end = time.getTimeInMillis() + 3600000;
-			event.put("dtstart", start);
-			event.put("dtend", end);
+			event.put(Events.DTSTART, start);
+			event.put(Events.DTEND, end);
 			TimeZone tz = TimeZone.getDefault();
-			event.put("eventTimezone", tz.getID());
-			event.put("hasAlarm", 1);
+			event.put(Events.EVENT_TIMEZONE, tz.getID());
+			event.put(Events.HAS_ALARM, 1);
 			Uri newEvent = getContentResolver().insert(
-					Uri.parse(calanderEventURL), event);
-			long id = Long.parseLong(newEvent.getLastPathSegment());
+					Events.CONTENT_URI, event);
+			long eventID = Long.parseLong(newEvent.getLastPathSegment());
+
 			ContentValues values = new ContentValues();
-			values.put("event_id", id);
-			values.put("minutes", 10);
-			// 插入日历
-			getContentResolver().insert(Uri.parse(calanderRemiderURL), values);
+			values.put(Reminders.MINUTES, 10);
+			values.put(Reminders.EVENT_ID, eventID);
+			values.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+			Uri uri = getContentResolver().insert(Reminders.CONTENT_URI, values);
+
 			Toast.makeText(DialogActivity.this, "添加提醒成功!!!", Toast.LENGTH_SHORT)
 					.show();
 
@@ -411,7 +398,7 @@ public class DialogActivity extends Activity implements OnClickListener {
 					// Calendar月份是从0开始,所以month要加1
 					time.set(year, month, dayOfMonth);
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-					datetextView.setText(format.format(time.getTime()));
+					dateTextView.setText(format.format(time.getTime()));
 				}
 			};
 			dialog = new DatePickerDialog(this, dateListener,
@@ -427,7 +414,7 @@ public class DialogActivity extends Activity implements OnClickListener {
 					time.set(Calendar.HOUR_OF_DAY, hourOfDay);
 					time.set(Calendar.MINUTE, minute);
 					SimpleDateFormat format = new SimpleDateFormat("H:mm");
-					timetextView.setText(format.format(time.getTime()));
+					timeTextView.setText(format.format(time.getTime()));
 				}
 			};
 			dialog = new TimePickerDialog(this, timeListener,

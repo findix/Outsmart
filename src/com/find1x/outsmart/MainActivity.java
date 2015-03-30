@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import org.jraf.android.backport.switchwidget.Switch;
 import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
@@ -29,7 +30,6 @@ import com.find1x.outsmart.segmentation.Persistence;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
-import org.jraf.android.backport.switchwidget.Switch;
 
 import java.util.ArrayList;
 
@@ -171,8 +171,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
             editSMSDo();
         } else if (preference.getKey().equals(getString(R.string.search_calendar))) {
             searchInCalendar();
-        } else if (preference.getKey().equals(
-                getString(R.string.choose_calendar))) {
+        } else if (preference.getKey().equals(getString(R.string.choose_calendar))) {
             chooseCalendarDo();
         } else if (preference.getKey().equals(getString(R.string.add_location))) {
             addLocationDo();
@@ -284,12 +283,13 @@ public class MainActivity extends SherlockPreferenceActivity implements
     }
 
     private void searchInCalendar() {
-        Toast.makeText(this, "在日历中搜索", Toast.LENGTH_SHORT);
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     private void chooseCalendarDo() {
         ArrayList<String> calName = new ArrayList<String>();
-        ArrayList<String> calId = new ArrayList<String>();
+        final ArrayList<String> calId = new ArrayList<String>();
         // 获取账户
         String[] projection = new String[]{"_id", "name"};
         Cursor userCursor = getContentResolver().query(Uri.parse(calanderURL),
@@ -332,7 +332,7 @@ public class MainActivity extends SherlockPreferenceActivity implements
                         // TODO Auto-generated method stub
                         Persistence setCalendar = new Persistence(
                                 "CalendarSet.db");
-                        setCalendar.changeValue(which + 1);
+                        setCalendar.changeValue(Integer.parseInt(calId.get(which)));
                     }
                 }).setNegativeButton("取消", null).show();
         userCursor.close();

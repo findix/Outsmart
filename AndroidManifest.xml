@@ -1,54 +1,54 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.find1x.outsmart"
-    android:versionCode="2"
-    android:versionName="1.0.1" >
+          package="com.find1x.outsmart"
+          android:versionCode="2"
+          android:versionName="1.0.1">
 
     <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="21" />
+            android:minSdkVersion="14"
+            android:targetSdkVersion="21"/>
 
     <!-- 系统权限————————————————————————————————————————————————————————————————————————————————— -->
     <!-- 读取联系人权限 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <!-- 发送消息 -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     <!-- 阅读消息 -->
-    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
     <!-- 写入消息 -->
-    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
     <!-- 接收消息 -->
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <!-- 开机启动权限 -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- 读写日历权限 -->
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
     <!-- 允许访问震动权限 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 往sdcard中写入数据的权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 在sdcard中创建/删除文件的权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- ————————————————————————————————————————————————————————————————————————————————————————— -->
 
 
     <!-- 分辨率适配 -->
     <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true" >
+            android:anyDensity="true"
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:smallScreens="true">
     </supports-screens>
 
     <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+            android:allowBackup="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
 
         <!-- 广播接收者注册————————————————————————————————————————————————————————————————————————————————— -->
         <!--
@@ -60,20 +60,16 @@
                  <action android:name="android.intent.action.BOOT_COMPLETED" />
              </intent-filter>
         </receiver>
-
-
-
-
         -->
         <receiver
-            android:name=".AutoStartBroadcastReceiver"
-            android:enabled="true"
-            android:exported="true" >
+                android:name=".AutoStartBroadcastReceiver"
+                android:enabled="true"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" >
+                <action android:name="android.intent.action.BOOT_COMPLETED">
                 </action>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </receiver>
         <!-- —————————————————————————————————————————————————————————————————————————————————————————————— -->
@@ -81,52 +77,55 @@
 
         <!-- activity注册—————————————————————————————————————————————————————————————————————————————————— -->
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/MainTheme" >
+                android:name=".MainActivity"
+                android:label="@string/title_activity_main"
+                android:theme="@style/MainTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".DialogActivity"
-            android:theme="@style/DialogTheme" >
+                android:name=".DialogActivity"
+                android:theme="@style/DialogTheme">
         </activity>
         <activity
-            android:name=".AboutActivity"
-            android:theme="@style/MainTheme" >
+                android:name=".AboutActivity"
+                android:theme="@style/MainTheme">
         </activity>
         <activity
-            android:name="com.umeng.fb.ConversationActivity"
-            android:theme="@style/FeedbackTheme" />
+                android:name=".SearchActivity"
+                android:theme="@style/MainTheme">
+        </activity>
         <activity
-            android:name="com.umeng.fb.ContactActivity"
-            android:theme="@style/FeedbackTheme" />
+                android:name="com.umeng.fb.ConversationActivity"
+                android:theme="@style/FeedbackTheme"/>
+        <activity
+                android:name="com.umeng.fb.ContactActivity"
+                android:theme="@style/FeedbackTheme"/>
 
         <service
-            android:name="com.umeng.common.net.DownloadingService"
-            android:process=":DownloadingService" >
+                android:name="com.umeng.common.net.DownloadingService"
+                android:process=":DownloadingService">
         </service>
 
         <activity
-            android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+                android:name="com.umeng.update.UpdateDialogActivity"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
 
         <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="5365d2e556240bd7e30dffae" >
+                android:name="UMENG_APPKEY"
+                android:value="5365d2e556240bd7e30dffae">
         </meta-data>
         <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="FindiX" >
+                android:name="UMENG_CHANNEL"
+                android:value="FindiX">
         </meta-data>
         <!-- —————————————————————————————————————————————————————————————————————————————————————————————— -->
         <service
-            android:name=".SmsReceiverService"
-            android:enabled="true" />
+                android:name=".SmsReceiverService"
+                android:enabled="true"/>
     </application>
 
 </manifest>
