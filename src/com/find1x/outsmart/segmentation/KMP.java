@@ -3,11 +3,11 @@ package com.find1x.outsmart.segmentation;
 import android.util.Log;
 
 /**
- * JavaÊµÏÖKMPËã·¨
+ * Javaå®ç°KMPç®—æ³•
  * 
- * Ë¼Ïë£ºÃ¿µ±Ò»ÌËÆ¥Åä¹ı³ÌÖĞ³öÏÖ×Ö·û±È½Ï²»µÈ£¬²»ĞèÒª»ØËİiÖ¸Õë£¬ ¶øÊÇÀûÓÃÒÑ¾­µÃµ½µÄ¡°²¿·ÖÆ¥Åä¡±µÄ½á¹û½«Ä£Ê½ÏòÓÒ¡°»¬¶¯¡±¾¡¿ÉÄÜÔ¶ µÄÒ»¶Î¾àÀëºó£¬¼ÌĞø½øĞĞ±È½Ï¡£
+ * æ€æƒ³ï¼šæ¯å½“ä¸€è¶ŸåŒ¹é…è¿‡ç¨‹ä¸­å‡ºç°å­—ç¬¦æ¯”è¾ƒä¸ç­‰ï¼Œä¸éœ€è¦å›æº¯iæŒ‡é’ˆï¼Œ è€Œæ˜¯åˆ©ç”¨å·²ç»å¾—åˆ°çš„â€œéƒ¨åˆ†åŒ¹é…â€çš„ç»“æœå°†æ¨¡å¼å‘å³â€œæ»‘åŠ¨â€å°½å¯èƒ½è¿œ çš„ä¸€æ®µè·ç¦»åï¼Œç»§ç»­è¿›è¡Œæ¯”è¾ƒã€‚
  * 
- * Ê±¼ä¸´ÔÓ¶ÈO(n+m)
+ * æ—¶é—´å¤æ‚åº¦O(n+m)
  * 
  * 
  * 
@@ -15,11 +15,11 @@ import android.util.Log;
 public class KMP {
 
 	/**
-	 * »ñµÃ×Ö·û´®µÄnextº¯ÊıÖµ
+	 * è·å¾—å­—ç¬¦ä¸²çš„nextå‡½æ•°å€¼
 	 * 
 	 * @param t
-	 *            ×Ö·û´®
-	 * @return nextº¯ÊıÖµ
+	 *            å­—ç¬¦ä¸²
+	 * @return nextå‡½æ•°å€¼
 	 */
 	char[] s;
 	char[] t;
@@ -51,13 +51,13 @@ public class KMP {
 	}
 
 	/**
-	 * KMPÆ¥Åä×Ö·û´®
+	 * KMPåŒ¹é…å­—ç¬¦ä¸²
 	 * 
 	 * @param s
-	 *            Ö÷´®
+	 *            ä¸»ä¸²
 	 * @param t
-	 *            Ä£Ê½´®
-	 * @return ÈôÆ¥Åä³É¹¦£¬·µ»ØÏÂ±ê£¬·ñÔò·µ»Ø-1
+	 *            æ¨¡å¼ä¸²
+	 * @return è‹¥åŒ¹é…æˆåŠŸï¼Œè¿”å›ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å›-1
 	 */
 	public int KMP_Index() {
 		int[] next = next(t);
@@ -74,13 +74,13 @@ public class KMP {
 		if (j < t.length) {
 			return -1;
 		} else
-			return i - t.length; // ·µ»ØÄ£Ê½´®ÔÚÖ÷´®ÖĞµÄÍ·ÏÂ±ê
+			return i - t.length; // è¿”å›æ¨¡å¼ä¸²åœ¨ä¸»ä¸²ä¸­çš„å¤´ä¸‹æ ‡
 	}
 	public boolean isInDicByString(String source) {
 		source = "\n" + source + "\n";
 		KMP kmp = new KMP("str", source);
 		if (kmp.KMP_Index() != -1) {
-			 Log.i(source, "ÕÒµ½");
+			 Log.i(source, "æ‰¾åˆ°");
 			return true;
 		} else {
 			return false;

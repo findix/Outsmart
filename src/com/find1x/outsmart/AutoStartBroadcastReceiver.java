@@ -9,25 +9,25 @@ public class AutoStartBroadcastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 		if (arg1.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-//			// ---------ÉùÃ÷Ò»¸öIntent,´ò¿ªÒ»¸öActivity;
+//			// ---------å£°æ˜ä¸€ä¸ªIntent,æ‰“å¼€ä¸€ä¸ªActivity;
 //			Intent intent_Activity = new Intent(arg0, My_android_Activity.class);
-//			// ÉèÖÃÆô¶¯µÄAction,²»ÊÇÇ¿ÖÆµÄ£»
+//			// è®¾ç½®å¯åŠ¨çš„Action,ä¸æ˜¯å¼ºåˆ¶çš„ï¼›
 //			intent_Activity.setAction("android.intent.action.MAIN");
-//			// Ìí¼Ócategory£¬,²»ÊÇÇ¿ÖÆµÄ£»
+//			// æ·»åŠ categoryï¼Œ,ä¸æ˜¯å¼ºåˆ¶çš„ï¼›
 //			intent_Activity.addCategory("android.intent.category.LAUNCHER");
 //			/*
-//			 * Èç¹û»î¶¯ÊÇÔÚ²»»î¶¯µÄ»·¾³ÏÂÕ¹¿ª£¬Õâ¸ö±êÖ¾ÊÇÇ¿ÖÆĞÔµÄÉèÖÃ£¬±ØĞë¼Ó£»
-//			 * Îª¸ÕÒªÆô¶¯µÄActivityÉèÖÃÆô¶¯²ÎÊı£¬´Ë²ÎÊıÉêÃ÷Æô¶¯Ê±ÎªActivity¿ª±ÙĞÂµÄÕ»¡£
+//			 * å¦‚æœæ´»åŠ¨æ˜¯åœ¨ä¸æ´»åŠ¨çš„ç¯å¢ƒä¸‹å±•å¼€ï¼Œè¿™ä¸ªæ ‡å¿—æ˜¯å¼ºåˆ¶æ€§çš„è®¾ç½®ï¼Œå¿…é¡»åŠ ï¼›
+//			 * ä¸ºåˆšè¦å¯åŠ¨çš„Activityè®¾ç½®å¯åŠ¨å‚æ•°ï¼Œæ­¤å‚æ•°ç”³æ˜å¯åŠ¨æ—¶ä¸ºActivityå¼€è¾Ÿæ–°çš„æ ˆã€‚
 //			 */
 //			intent_Activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //
-//			// Æô¶¯activity
+//			// å¯åŠ¨activity
 //			arg0.startActivity(intent_Activity);
 
-			// --------ÉùÃ÷Ò»¸öIntentÓÃÒÔÆô¶¯Ò»¸öService;
+			// --------å£°æ˜ä¸€ä¸ªIntentç”¨ä»¥å¯åŠ¨ä¸€ä¸ªService;
 
 			Intent intent_service = new Intent(arg0, SmsReceiverService.class);
-			// ¿ÉÒÔÔÚ·şÎñÀïÃæ½øĞĞÒ»Ğ©ÓÃ»§²»ĞèÒªÖªµÀµÄ²Ù×÷£¬±ÈÈç¸üĞÂ¡£
+			// å¯ä»¥åœ¨æœåŠ¡é‡Œé¢è¿›è¡Œä¸€äº›ç”¨æˆ·ä¸éœ€è¦çŸ¥é“çš„æ“ä½œï¼Œæ¯”å¦‚æ›´æ–°ã€‚
 			arg0.startService(intent_service);
 
 		}

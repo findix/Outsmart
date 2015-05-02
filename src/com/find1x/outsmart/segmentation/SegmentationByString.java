@@ -9,17 +9,17 @@ public class SegmentationByString {
 	String str;
 
 	public SegmentationByString() {
-		long ftime = Calendar.getInstance().getTimeInMillis();// ��ʼʱ��
+		long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
 		//str = GetDic.getString();
 		str = GetDic.getString();
-		Log.i("����Stringʱ��", Calendar.getInstance().getTimeInMillis() - ftime
-				+ "");// ����ʱ��
+		Log.i("导入String时间", Calendar.getInstance().getTimeInMillis() - ftime
+				+ "");// 结束时间
 	}
 
 	public String[] getWords(String str) {
 		long ftime = Calendar.getInstance().getTimeInMillis();
 		ArrayList<String> list = getWordsbyArrayList(str);
-		Log.i("�ִ�ʱ��", Calendar.getInstance().getTimeInMillis() - ftime + "");// ����ʱ��
+		Log.i("分词时间", Calendar.getInstance().getTimeInMillis() - ftime + "");// 结束时间
 		return (String[]) list.toArray(new String[list.size()]);
 	}
 
@@ -48,14 +48,14 @@ public class SegmentationByString {
 
 	public boolean isInDicByString(String source) {
 		int index;
-		index = str.indexOf("\n"+source + "\n");//���ٷִ�
-		// index = str.indexOf("\r\n"+source + "\r\n");//�߾�ȷ�ִʣ�����Ч�ʺܵ�
+		index = str.indexOf("\n"+source + "\n");//快速分词
+		// index = str.indexOf("\r\n"+source + "\r\n");//高精确分词，但是效率很低
 		if (index != -1) {
 			// Log.i(source, str.substring(index - 1, index));
-			// Log.i(source, "�ҵ�");
+			// Log.i(source, "找到");
 			return true;
 		} else {
-			// Log.i(source, "û�ҵ�");
+			// Log.i(source, "没找到");
 			return false;
 		}
 	}

@@ -32,8 +32,8 @@ public class GetHash {
 	}
 
 	// 1
-	// ´ÓRobert SedgwicksµÄ Algorithms in CÒ»ÊéÖĞµÃµ½ÁË¡£
-	// ÎÒ(Ô­ÎÄ×÷Õß)ÒÑ¾­Ìí¼ÓÁËÒ»Ğ©¼òµ¥µÄÓÅ»¯µÄËã·¨£¬ÒÔ¼Ó¿ìÆäÉ¢ÁĞ¹ı³Ì¡£
+	// ä»Robert Sedgwicksçš„ Algorithms in Cä¸€ä¹¦ä¸­å¾—åˆ°äº†ã€‚
+	// æˆ‘(åŸæ–‡ä½œè€…)å·²ç»æ·»åŠ äº†ä¸€äº›ç®€å•çš„ä¼˜åŒ–çš„ç®—æ³•ï¼Œä»¥åŠ å¿«å…¶æ•£åˆ—è¿‡ç¨‹ã€‚
 	public long RSHash(String str) {
 		int b = 378551;
 		int a = 63689;
@@ -46,9 +46,9 @@ public class GetHash {
 	}
 
 	// 2
-	// Õâ¸öËã·¨À´×ÔBrian Kernighan ºÍ Dennis RitchieµÄ The C Programming Language¡£
-	// ÕâÊÇÒ»¸öºÜ¼òµ¥µÄ¹şÏ£Ëã·¨,Ê¹ÓÃÁËÒ»ÏµÁĞÆæ¹ÖµÄÊı×Ö,
-	// ĞÎÊ½Èç31,3131,31...31,¿´ÉÏÈ¥ºÍDJBËã·¨ºÜÏàËÆ¡£
+	// è¿™ä¸ªç®—æ³•æ¥è‡ªBrian Kernighan å’Œ Dennis Ritchieçš„ The C Programming Languageã€‚
+	// è¿™æ˜¯ä¸€ä¸ªå¾ˆç®€å•çš„å“ˆå¸Œç®—æ³•,ä½¿ç”¨äº†ä¸€ç³»åˆ—å¥‡æ€ªçš„æ•°å­—,
+	// å½¢å¼å¦‚31,3131,31...31,çœ‹ä¸Šå»å’ŒDJBç®—æ³•å¾ˆç›¸ä¼¼ã€‚
 	public long BKDRHash(String str) {
 		long seed = 131; // 31 131 1313 13131 131313 etc..
 		long hash = 0;
@@ -59,7 +59,7 @@ public class GetHash {
 	}
 
 	// 3
-	// Õâ¸öËã·¨ÔÚ¿ªÔ´µÄSDBMÖĞÊ¹ÓÃ£¬ËÆºõ¶ÔºÜ¶à²»Í¬ÀàĞÍµÄÊı¾İ¶¼ÄÜµÃµ½²»´íµÄ·Ö²¼
+	// è¿™ä¸ªç®—æ³•åœ¨å¼€æºçš„SDBMä¸­ä½¿ç”¨ï¼Œä¼¼ä¹å¯¹å¾ˆå¤šä¸åŒç±»å‹çš„æ•°æ®éƒ½èƒ½å¾—åˆ°ä¸é”™çš„åˆ†å¸ƒ
 	public long SDBMHash(String str) {
 		long hash = 0;
 		for (int i = 0; i < str.length(); i++) {
@@ -69,7 +69,7 @@ public class GetHash {
 	}
 
 	// 4
-	// Õâ¸öËã·¨ÊÇDaniel J.Bernstein ½ÌÊÚ·¢Ã÷µÄ£¬ÊÇÄ¿Ç°¹«²¼µÄ×îÓĞĞ§µÄ¹şÏ£º¯Êı¡£
+	// è¿™ä¸ªç®—æ³•æ˜¯Daniel J.Bernstein æ•™æˆå‘æ˜çš„ï¼Œæ˜¯ç›®å‰å…¬å¸ƒçš„æœ€æœ‰æ•ˆçš„å“ˆå¸Œå‡½æ•°ã€‚
 	public long DJBHash(String str) {
 		long hash = 5381;
 		for (int i = 0; i < str.length(); i++) {
@@ -79,7 +79,7 @@ public class GetHash {
 	}
 
 	// 5
-	// ÓÉÎ°´óµÄKnuthÔÚ¡¶±à³ÌµÄÒÕÊõ µÚÈı¾í¡·µÄµÚÁùÕÂÅÅĞòºÍËÑË÷ÖĞ¸ø³ö¡£
+	// ç”±ä¼Ÿå¤§çš„Knuthåœ¨ã€Šç¼–ç¨‹çš„è‰ºæœ¯ ç¬¬ä¸‰å·ã€‹çš„ç¬¬å…­ç« æ’åºå’Œæœç´¢ä¸­ç»™å‡ºã€‚
 	public long DEKHash(String str) {
 		long hash = str.length();
 		for (int i = 0; i < str.length(); i++) {
@@ -89,7 +89,7 @@ public class GetHash {
 	}
 
 	// 6
-	// ÓÉÎ°´óµÄMK½«4ºÍ5×éºÏ¶ø´´ÔìµÄ¹şÏ£º¯Êı
+	// ç”±ä¼Ÿå¤§çš„MKå°†4å’Œ5ç»„åˆè€Œåˆ›é€ çš„å“ˆå¸Œå‡½æ•°
 	public long MKHash(String str) {
 		long hash = 5381;
 		for (int i = 0; i < str.length(); i++) {

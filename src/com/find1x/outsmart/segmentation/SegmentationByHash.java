@@ -10,16 +10,16 @@ public class SegmentationByHash {
 	HashSet<String> hash = new HashSet<String>();
 
 	public SegmentationByHash() {
-		long ftime = Calendar.getInstance().getTimeInMillis();// ��ʼʱ��
+		long ftime = Calendar.getInstance().getTimeInMillis();// 开始时间
 		hash = GetDic.getHash();
-		Log.i("����hashsetʱ��", Calendar.getInstance().getTimeInMillis() - ftime
-				+ "");// ����ʱ��
+		Log.i("导入hashset时间", Calendar.getInstance().getTimeInMillis() - ftime
+				+ "");// 结束时间
 	}
 
 	public String[] getWords(String str) {
 		long ftime = Calendar.getInstance().getTimeInMillis();
 		ArrayList<String> list = getWordsbyArrayList(str);
-		Log.i("�ִ�ʱ��", Calendar.getInstance().getTimeInMillis() - ftime + "");// ����ʱ��
+		Log.i("分词时间", Calendar.getInstance().getTimeInMillis() - ftime + "");// 结束时间
 		return (String[]) list.toArray(new String[list.size()]);
 	}
 
@@ -48,10 +48,10 @@ public class SegmentationByHash {
 
 	public boolean isInDicByHash(String source) {
 		if (hash.contains((source))) {
-			// Log.i(source, "�ҵ�");
+			// Log.i(source, "找到");
 			return true;
 		} else {
-			// Log.i(source, "û�ҵ�");
+			// Log.i(source, "没找到");
 			return false;
 		}
 	}

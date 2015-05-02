@@ -17,17 +17,17 @@ public class BackupTask extends AsyncTask<String, Void, Integer> {
 	public BackupTask(Context context) {
 		this.mContext = context;
 	}
-	
+
 	public BackupTask() {
 	}
 
 	@Override
 	protected Integer doInBackground(String... params) {
 		// TODO Auto-generated method stub
-		// �������ʹ�õ����ݿ�·��
-		// ��ȡSD���µ���
+		// 获得正在使用的数据库路径
+		// 获取SD卡下的用
 		// Environment.getExternalStorageDirectory().getAbsolutePath()+"*.db."
-		// Ĭ��·���� /data/data/(����)/databases/*.db3
+		// 默认路径是 /data/data/(包名)/databases/*.db3
 		File dbFile = mContext.getDatabasePath("/data/data/"+packagename+"/databases/user.db3");
 		File exportDir = new File(Environment.getExternalStorageDirectory(),
 				"/findix/Backup");

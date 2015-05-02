@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 
 public class SendSMS {
-	/** ��������յĹ㲥 **/
+	/** 发送与接收的广播 **/
 	String SENT_SMS_ACTION = "SENT_SMS_ACTION";
 	String DELIVERED_SMS_ACTION = "DELIVERED_SMS_ACTION";
 	Context mContext = null;
@@ -39,7 +39,7 @@ public class SendSMS {
 		PendingIntent deliverPI = PendingIntent.getBroadcast(mContext, 0,
 				deliverIntent, 0);
 
-		// ����������ݳ���70���ַ� ���������Ų�ɶ������ŷ��ͳ�ȥ
+		// 如果短信内容超过70个字符 将这条短信拆成多条短信发送出去
 		if (message.length() > 70) {
 			ArrayList<String> msgs = sms.divideMessage(message);
 			for (String msg : msgs) {
